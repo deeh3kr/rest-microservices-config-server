@@ -1,4 +1,4 @@
 rest:
   currency-exchange:
-    url: localhost:8000/currency-exchange/from/{from}/to/{to}
+    url: http://localhost:8000/currency-exchange/from/{from}/to/{to}
     main-url: localhost:8000
