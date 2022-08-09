@@ -5,3 +5,4 @@ eureka:
   instance:
     preferIpAddress: true
     hostname: localhost
+    lease-renewal-interval-in-seconds: 30
