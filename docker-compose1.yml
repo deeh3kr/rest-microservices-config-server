@@ -9,6 +9,7 @@ services:
       - currency-network
     depends_on:
       - naming-server
+      - rabbitmq
     # env_file:
     #   - ./mysql.env
 
@@ -19,6 +20,7 @@ services:
       - '8100:8100'
     depends_on:
       - naming-server
+      - rabbitmq
     networks:
       - currency-network
   naming-server:
@@ -35,6 +37,7 @@ services:
       - '8765:8765'
     depends_on:
       - naming-server
+      - rabbitmq
     networks:
       - currency-network
   zipkin-server:
@@ -45,7 +48,16 @@ services:
       - currency-network
     depends_on:
       - rabbitmq
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     restart:
       always
+  rabbitmq:
+    image: rabbitmq:3.8.12-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    networks:
+      - currency-network
 networks:
   currency-network:
