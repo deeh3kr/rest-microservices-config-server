@@ -6,3 +6,6 @@ eureka:
     preferIpAddress: true
     hostname: localhost
     lease-renewal-interval-in-seconds: 30
+spring:
+  zipkin:
+    baseUrl: http://zipkin-server:9411

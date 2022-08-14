@@ -37,15 +37,15 @@ services:
       - naming-server
     networks:
       - currency-network
-  # zipkin-server:
-  #   image: openzipkin/zipkin:latest
-  #   ports:
-  #     - '9411:9411'
-  #   networks:
-  #     - currency-network
-  #   depends_on:
-  #     - rabbitmq
-  #   restart:
-  #     always
+  zipkin-server:
+    image: openzipkin/zipkin:latest
+    ports:
+      - '9411:9411'
+    networks:
+      - currency-network
+    depends_on:
+      - rabbitmq
+    restart:
+      always
 networks:
   currency-network:
