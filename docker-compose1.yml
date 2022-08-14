@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  currency-exchange:
+    image: 'com.microservice/currency-exchange-service:0.0.1-SNAPSHOT'
+    container_name: currency-exchange
+    ports:
+      - '8000:8000'
+    networks:
+      - currency-network
+    # depends_on:
+    #   - naming-server
+    env_file:
+      - ./mysql.env
+
+  # currency-conversion:
+  #   image: 'd33ker/currency-conversion'
+  #   ports:
+  #     - '8000:8000'
+  # naming-server:
+  #   image: 'com.microservice/naming-server:0.0.1-SNAPSHOT'
+  #   container_name: naming-server
+  #   ports:
+  #     - '8761:8761'
+  #   networks:
+  #     - currency-network
+  # api-gateway:
+  #   image: 'd33ker/currency-api-gateway'
+  #   ports:
+  #     - '8000:8000'
+  # php:
+  #   build:
+  #     context: ./dockerfiles
+  #     dockerfile: php.dockerfile
+  #   volumes:
+  #     - ./src:/var/www/html:delegated
+
+  
+  # composer:
+  #   build:
+  #     context: ./dockerfiles
+  #     dockerfile: composer.dockerfile
+  #   volumes:
+  #     - ./src:/var/www/html
+networks:
+  currency-network:

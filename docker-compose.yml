@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  config-server:
+    image: 'com.microservice/config-server:0.0.1-SNAPSHOT'
+    container_name: currency-config-server
+    networks:
+      - currency-network
+    ports:
+      - '8888:8888'
+networks:
+  currency-network:
