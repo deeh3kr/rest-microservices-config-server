@@ -7,22 +7,27 @@ services:
       - '8000:8000'
     networks:
       - currency-network
-    # depends_on:
-    #   - naming-server
-    env_file:
-      - ./mysql.env
+    depends_on:
+      - naming-server
+    # env_file:
+    #   - ./mysql.env
 
-  # currency-conversion:
-  #   image: 'd33ker/currency-conversion'
-  #   ports:
-  #     - '8000:8000'
-  # naming-server:
-  #   image: 'com.microservice/naming-server:0.0.1-SNAPSHOT'
-  #   container_name: naming-server
-  #   ports:
-  #     - '8761:8761'
-  #   networks:
-  #     - currency-network
+  currency-conversion:
+    image: 'com.microservice/currency-conversion-service:0.0.1-SNAPSHOT'
+    container_name: currency-conversion
+    ports:
+      - '8100:8100'
+    depends_on:
+      - naming-server
+    networks:
+      - currency-network
+  naming-server:
+    image: 'com.microservice/naming-server:0.0.1-SNAPSHOT'
+    container_name: naming-server
+    ports:
+      - '8761:8761'
+    networks:
+      - currency-network
   # api-gateway:
   #   image: 'd33ker/currency-api-gateway'
   #   ports:

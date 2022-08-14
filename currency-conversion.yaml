@@ -1,6 +1,6 @@
 rest:
   currency-exchange:
-    url: http://localhost:8000/currency-exchange/from/{from}/to/{to}
+    url: http://currency-exchange:8000/currency-exchange/from/{from}/to/{to}
     main-url: localhost:8000
 eureka:
   instance:
@@ -8,4 +8,4 @@ eureka:
     hostname: localhost
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://naming-server:8761/eureka
