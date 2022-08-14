@@ -28,23 +28,24 @@ services:
       - '8761:8761'
     networks:
       - currency-network
-  # api-gateway:
-  #   image: 'd33ker/currency-api-gateway'
+  api-gateway:
+    image: 'com.microservice/api-gateway:0.0.1-SNAPSHOT'
+    container_name: api-gateway
+    ports:
+      - '8765:8765'
+    depends_on:
+      - naming-server
+    networks:
+      - currency-network
+  # zipkin-server:
+  #   image: openzipkin/zipkin:latest
   #   ports:
-  #     - '8000:8000'
-  # php:
-  #   build:
-  #     context: ./dockerfiles
-  #     dockerfile: php.dockerfile
-  #   volumes:
-  #     - ./src:/var/www/html:delegated
-
-  
-  # composer:
-  #   build:
-  #     context: ./dockerfiles
-  #     dockerfile: composer.dockerfile
-  #   volumes:
-  #     - ./src:/var/www/html
+  #     - '9411:9411'
+  #   networks:
+  #     - currency-network
+  #   depends_on:
+  #     - rabbitmq
+  #   restart:
+  #     always
 networks:
   currency-network:
